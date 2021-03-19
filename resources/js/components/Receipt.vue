@@ -11,14 +11,16 @@
                 <table class="table table-borderless">
                     <thead>
                         <th>Order</th>
-                        <th>Price</th>
-                        <th>Tax (12%)</th>
+                        <th>Price </th>
+                        <th>Tax (12%) </th>
+                        <th>Total </th>
                     </thead>
                     <tbody>
                         <tr v-for="(order, index) in orders" :key="index">
                             <td>{{order.name}}</td>
                             <td>{{order.price}}</td>
                             <td>{{order.price | tax}}</td>
+                            <td>{{order.price | totalprice}}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -65,6 +67,11 @@ export default {
         tax(value) {
             let val = value * 0.12;
             return val.toFixed(2);
+        },
+        totalprice(value) {
+            let val = value * 0.12;
+            let subtotal = value + val;
+            return subtotal.toFixed(2);
         }
     },
     computed: {
